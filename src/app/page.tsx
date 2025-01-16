@@ -3,10 +3,15 @@
 import { useState, useEffect } from 'react';
 import { githubClient } from '@/utils/githubClient';
 import { GET_STARRED_REPOS } from '@/graphql/queries/getStarredRepos';
-import RecentStars from '@/components/RecentStars/RecentStars';
+import * as styles from './page.css';
+import DeveloperStars from '@/components/DeveloperStars/DeveloperStars';
 
 interface GetStarredReposResponse {
   user: {
+    name: string;
+    login: string;
+    avatarUrl: string;
+    bio: string;
     starredRepositories: {
       edges: {
         starredAt: string;
@@ -23,32 +28,22 @@ interface GetStarredReposResponse {
   };
 }
 
-interface StarredRepo {
+interface Repo {
+  name: string;
+  owner: string;
+  url: string;
+  description: string;
+  stars: number;
+  language: string;
   starredAt: string;
-  node: {
-    name: string;
-    owner: { login: string };
-    url: string;
-    description: string;
-    stargazerCount: number;
-    primaryLanguage: { name: string } | null;
-  };
 }
 
-interface DeveloperRepos {
-  developer: string;
-  repos:
-    | {
-        name: string;
-        description: string;
-        url: string;
-        stars: number;
-        language: string;
-        starredAt: string;
-        thumbnail: string;
-      }[]
-    | null;
-  error?: string;
+interface Developer {
+  name: string;
+  username: string;
+  avatar: string;
+  bio: string;
+  starredRepos: Repo[];
 }
 
 const StarredReposPage = () => {
@@ -60,68 +55,51 @@ const StarredReposPage = () => {
     'tonyfromundefined',
   ];
 
-  const [developerRepos, setDeveloperRepos] = useState<DeveloperRepos[]>([]);
+  const [developerRepos, setDeveloperRepos] = useState<Developer[]>([]);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const fetchStarredRepos = async () => {
       setLoading(true);
-      const results: DeveloperRepos[] = [];
 
       try {
         const fetchPromises = developers.map(async (developer) => {
           try {
-            const variables = {
-              username: developer,
-              first: 10,
-            };
-
+            const variables = { username: developer, first: 10 };
             const data: GetStarredReposResponse = await githubClient.request(
               GET_STARRED_REPOS,
               variables
             );
 
-            const repos: StarredRepo[] = data.user.starredRepositories.edges;
-
-            const lastMonth = new Date();
-            lastMonth.setMonth(lastMonth.getMonth() - 1);
-
-            const filteredRepos = repos.filter((repo) => {
-              const starredDate = new Date(repo.starredAt);
-              return starredDate >= lastMonth;
-            });
-
-            const reposWithThumbnails = filteredRepos.map((repo) => ({
+            const repos = data.user.starredRepositories.edges.map((repo) => ({
               name: repo.node.name,
-              description: repo.node.description,
+              owner: repo.node.owner.login,
               url: repo.node.url,
+              description: repo.node.description,
               stars: repo.node.stargazerCount,
               language: repo.node.primaryLanguage?.name || 'Unknown',
               starredAt: repo.starredAt,
-              thumbnail: `https://opengraph.githubassets.com/1a2b3c4d5e/${repo.node.owner.login}/${repo.node.name}`,
             }));
 
-            return { developer, repos: reposWithThumbnails };
+            return {
+              name: data.user.name,
+              username: data.user.login,
+              avatar: data.user.avatarUrl,
+              bio: data.user.bio,
+              starredRepos: repos,
+            };
           } catch (error: any) {
-            return { developer, repos: null, error: error.message };
+            console.error(`Failed to fetch data for ${developer}:`, error);
+            return null;
           }
         });
 
-        const responses = await Promise.allSettled(fetchPromises);
+        const responses = await Promise.all(fetchPromises);
+        const filteredResponses = responses.filter(
+          (response): response is Developer => response !== null
+        );
 
-        responses.forEach((response, index) => {
-          if (response.status === 'fulfilled') {
-            results.push(response.value);
-          } else {
-            results.push({
-              developer: developers[index],
-              repos: null,
-              error: 'Failed to fetch data',
-            });
-          }
-        });
-
-        setDeveloperRepos(results);
+        setDeveloperRepos(filteredResponses);
       } finally {
         setLoading(false);
       }
@@ -130,19 +108,22 @@ const StarredReposPage = () => {
     fetchStarredRepos();
   }, []);
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) {
+    return (
+      <div className={styles.loaderContainer}>
+        <div className={styles.spinner}></div>
+      </div>
+    );
+  }
 
   return (
     <div>
-      <h1>Starred Repositories</h1>
-      {developerRepos.map(({ developer, repos, error }) => (
-        <RecentStars
-          key={developer}
-          developer={developer}
-          repos={repos || []}
-          error={error}
-        />
-      ))}
+      <h1 className={styles.title}>개발자 스타 트래커</h1>
+      <div className={styles.contentContainer}>
+        {developerRepos.map((developer) => (
+          <DeveloperStars key={developer.username} developer={developer} />
+        ))}
+      </div>
     </div>
   );
 };

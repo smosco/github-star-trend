@@ -1,6 +1,10 @@
 export const GET_STARRED_REPOS = `
   query GetStarredRepos($username: String!, $first: Int!) {
     user(login: $username) {
+      name
+      login
+      avatarUrl
+      bio
       starredRepositories(first: $first, orderBy: { field: STARRED_AT, direction: DESC }) {
         edges {
           starredAt

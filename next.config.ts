@@ -5,8 +5,14 @@ const withVanillaExtract = createVanillaExtractPlugin();
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
-  // NOTE(@smosco): turbopack과 vanilla extract가 호환이 안됨
-  turbo: false,
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'avatars.githubusercontent.com',
+      },
+    ],
+  },
 };
 
 export default withVanillaExtract(nextConfig);
