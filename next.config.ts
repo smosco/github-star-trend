@@ -1,7 +1,12 @@
 import type { NextConfig } from 'next';
+import { createVanillaExtractPlugin } from '@vanilla-extract/next-plugin';
+
+const withVanillaExtract = createVanillaExtractPlugin();
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  reactStrictMode: true,
+  // NOTE(@smosco): turbopack과 vanilla extract가 호환이 안됨
+  turbo: false,
 };
 
-export default nextConfig;
+export default withVanillaExtract(nextConfig);
