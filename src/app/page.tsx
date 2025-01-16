@@ -3,6 +3,25 @@
 import { useState, useEffect } from 'react';
 import { githubClient } from '@/utils/githubClient';
 import { GET_STARRED_REPOS } from '@/graphql/queries/getStarredRepos';
+import RecentStars from '@/components/RecentStars/RecentStars';
+
+interface GetStarredReposResponse {
+  user: {
+    starredRepositories: {
+      edges: {
+        starredAt: string;
+        node: {
+          name: string;
+          owner: { login: string };
+          url: string;
+          description: string;
+          stargazerCount: number;
+          primaryLanguage: { name: string } | null;
+        };
+      }[];
+    };
+  };
+}
 
 interface StarredRepo {
   starredAt: string;
@@ -18,22 +37,25 @@ interface StarredRepo {
 
 interface DeveloperRepos {
   developer: string;
-  repos: StarredRepo[] | null;
+  repos:
+    | {
+        name: string;
+        description: string;
+        url: string;
+        stars: number;
+        language: string;
+        starredAt: string;
+        thumbnail: string;
+      }[]
+    | null;
   error?: string;
 }
 
 const StarredReposPage = () => {
   const developers = [
-    // 'theo3',
-    // 'hassan-el',
     'mattpocock',
-    // 'benawad',
-    // 'jakearchibald',
     'codediodeio',
-    // 'kentcdodds',
     'davidkpiano',
-    // 'cassidoo',
-    // 'jlengstorf',
     'soaple',
     'tonyfromundefined',
   ];
@@ -51,16 +73,16 @@ const StarredReposPage = () => {
           try {
             const variables = {
               username: developer,
-              first: 10, // 최대 10개 가져오기
+              first: 10,
             };
 
-            const data = await githubClient.request(
+            const data: GetStarredReposResponse = await githubClient.request(
               GET_STARRED_REPOS,
               variables
             );
+
             const repos: StarredRepo[] = data.user.starredRepositories.edges;
 
-            // 최근 1개월 동안 스타한 레포만 필터링
             const lastMonth = new Date();
             lastMonth.setMonth(lastMonth.getMonth() - 1);
 
@@ -69,7 +91,17 @@ const StarredReposPage = () => {
               return starredDate >= lastMonth;
             });
 
-            return { developer, repos: filteredRepos };
+            const reposWithThumbnails = filteredRepos.map((repo) => ({
+              name: repo.node.name,
+              description: repo.node.description,
+              url: repo.node.url,
+              stars: repo.node.stargazerCount,
+              language: repo.node.primaryLanguage?.name || 'Unknown',
+              starredAt: repo.starredAt,
+              thumbnail: `https://opengraph.githubassets.com/1a2b3c4d5e/${repo.node.owner.login}/${repo.node.name}`,
+            }));
+
+            return { developer, repos: reposWithThumbnails };
           } catch (error: any) {
             return { developer, repos: null, error: error.message };
           }
@@ -102,37 +134,14 @@ const StarredReposPage = () => {
 
   return (
     <div>
-      <h1>Developers' Starred Repositories</h1>
+      <h1>Starred Repositories</h1>
       {developerRepos.map(({ developer, repos, error }) => (
-        <div key={developer}>
-          <h2>{developer}'s Recent Stars</h2>
-          {error ? (
-            <p style={{ color: 'red' }}>Error: {error}</p>
-          ) : repos && repos.length > 0 ? (
-            <ul>
-              {repos.map((repo) => (
-                <li key={repo.node.name}>
-                  <a
-                    href={repo.node.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <h3>{repo.node.name}</h3>
-                  </a>
-                  <p>{repo.node.description || 'No description provided'}</p>
-                  <p>Owner: {repo.node.owner.login}</p>
-                  <p>Stars: {repo.node.stargazerCount}</p>
-                  {repo.node.primaryLanguage && (
-                    <p>Language: {repo.node.primaryLanguage.name}</p>
-                  )}
-                  <p>Starred At: {new Date(repo.starredAt).toLocaleString()}</p>
-                </li>
-              ))}
-            </ul>
-          ) : (
-            <p>No stars in the past month.</p>
-          )}
-        </div>
+        <RecentStars
+          key={developer}
+          developer={developer}
+          repos={repos || []}
+          error={error}
+        />
       ))}
     </div>
   );
