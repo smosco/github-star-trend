@@ -1,80 +1,115 @@
 import { style } from '@vanilla-extract/css';
 
 export const container = style({
-  padding: '16px',
-  backgroundColor: '#FAF8F5',
-  minHeight: '100vh',
-  display: 'flex',
-  flexDirection: 'column',
-  gap: '16px',
+  backgroundColor: '#1a202c',
+  color: '#edf2f7',
+  padding: '1.5rem',
+  borderRadius: '0.5rem',
+  boxShadow:
+    '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
 });
 
-export const header = style({
-  textAlign: 'center',
-  fontSize: '24px',
+export const title = style({
+  fontSize: '1.5rem',
   fontWeight: 'bold',
-  color: '#333',
-  marginBottom: '16px',
+  marginBottom: '0.5rem',
+  color: '#63b3ed',
 });
 
-export const dateText = style({
-  fontSize: '14px',
-  color: '#666',
+export const date = style({
+  fontSize: '0.875rem',
+  color: '#a0aec0',
+  marginBottom: '1.5rem',
 });
 
-export const cardContainer = style({
+export const error = style({
+  color: '#f56565',
+});
+
+export const grid = style({
   display: 'grid',
-  gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
-  gap: '16px',
+  gridTemplateColumns: 'repeat(1, minmax(0, 1fr))',
+  gap: '1.5rem',
+  '@media': {
+    '(min-width: 768px)': {
+      gridTemplateColumns: 'repeat(2, minmax(0, 1fr))',
+    },
+    '(min-width: 1024px)': {
+      gridTemplateColumns: 'repeat(3, minmax(0, 1fr))',
+    },
+  },
 });
 
 export const card = style({
-  display: 'flex',
-  flexDirection: 'row',
-  alignItems: 'center',
-  gap: '16px',
-  backgroundColor: '#FFFFFF',
-  borderRadius: '8px',
-  padding: '16px',
-  boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
-  transition: 'transform 0.2s',
-  ':hover': {
-    transform: 'scale(1.03)',
+  backgroundColor: '#2d3748',
+  borderRadius: '0.5rem',
+  overflow: 'hidden',
+  boxShadow:
+    '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+  transition: 'all 0.3s ease-in-out',
+  selectors: {
+    '&:hover': {
+      boxShadow:
+        '0 12px 16px -4px rgba(0, 0, 0, 0.2), 0 6px 8px -2px rgba(0, 0, 0, 0.1)',
+      transform: 'scale(1.05)',
+    },
   },
 });
 
 export const thumbnail = style({
-  width: '80px',
-  height: '80px',
-  borderRadius: '8px',
+  width: '100%',
+  height: '12rem',
   objectFit: 'cover',
 });
 
 export const cardContent = style({
-  display: 'flex',
-  flexDirection: 'column',
-  gap: '8px',
+  padding: '1rem',
 });
 
-export const repoName = style({
-  fontSize: '18px',
-  fontWeight: 'bold',
-  color: '#1E88E5',
+export const link = style({
+  fontSize: '1.125rem',
+  fontWeight: '600',
+  color: '#63b3ed',
   textDecoration: 'none',
-  ':hover': {
-    textDecoration: 'underline',
+  transition: 'color 0.2s ease-in-out',
+  selectors: {
+    '&:hover': {
+      color: '#90cdf4',
+    },
   },
 });
 
-export const repoDescription = style({
-  fontSize: '14px',
-  color: '#666',
-  lineHeight: '1.4',
+export const description = style({
+  fontSize: '0.875rem',
+  color: '#a0aec0',
+  marginTop: '0.5rem',
+  height: '3rem',
+  overflow: 'hidden',
 });
 
-export const repoDetails = style({
+export const meta = style({
   display: 'flex',
-  gap: '16px',
-  fontSize: '12px',
-  color: '#888',
+  justifyContent: 'space-between',
+  alignItems: 'center',
+  fontSize: '0.75rem',
+  color: '#718096',
+  marginTop: '1rem',
+});
+
+export const starContainer = style({
+  display: 'flex',
+  alignItems: 'center',
+});
+
+export const starIcon = style({
+  width: '1rem',
+  height: '1rem',
+  marginRight: '0.25rem',
+  color: '#ecc94b',
+});
+
+export const languageBadge = style({
+  padding: '0.25rem 0.5rem',
+  backgroundColor: '#4a5568',
+  borderRadius: '9999px',
 });
