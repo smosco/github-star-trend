@@ -2,14 +2,10 @@ import { style } from '@vanilla-extract/css';
 
 export const container = style({
   backgroundColor: '#ffffff',
-  '@media': {
-    '(prefers-color-scheme: dark)': {
-      backgroundColor: '#1a202c',
-    },
-  },
   padding: '1.5rem',
   borderRadius: '0.5rem',
   boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+  marginBottom: '3rem',
 });
 
 export const header = style({
@@ -27,38 +23,26 @@ export const name = style({
   fontSize: '1.5rem',
   fontWeight: 'bold',
   color: '#1a202c',
-  '@media': {
-    '(prefers-color-scheme: dark)': {
-      color: '#f7fafc',
-    },
-  },
+  margin: 0,
 });
 
 export const bio = style({
   fontSize: '0.875rem',
   color: '#4a5568',
-  '@media': {
-    '(prefers-color-scheme: dark)': {
-      color: '#a0aec0',
-    },
-  },
+  margin: 0,
 });
 
 export const repoContainer = style({
-  backgroundColor: '#f9fafb',
-  '@media': {
-    '(prefers-color-scheme: dark)': {
-      backgroundColor: '#2d3748',
-    },
-  },
+  marginBottom: '1rem',
+  padding: '1.5rem',
   borderRadius: '0.5rem',
   overflow: 'hidden',
+  backgroundColor: '#f9fafb',
   boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
   transition: 'box-shadow 0.3s ease, transform 0.3s ease',
   selectors: {
     '&:hover': {
       boxShadow: '0 6px 8px rgba(0, 0, 0, 0.2)',
-      transform: 'translateY(-2px)',
     },
   },
 });
@@ -74,11 +58,6 @@ export const repoLink = style({
   fontWeight: '600',
   color: '#3182ce',
   textDecoration: 'none',
-  '@media': {
-    '(prefers-color-scheme: dark)': {
-      color: '#63b3ed',
-    },
-  },
   selectors: {
     '&:hover': {
       textDecoration: 'underline',
@@ -89,11 +68,6 @@ export const repoLink = style({
 export const repoDate = style({
   fontSize: '0.875rem',
   color: '#718096',
-  '@media': {
-    '(prefers-color-scheme: dark)': {
-      color: '#a0aec0',
-    },
-  },
 });
 
 export const repoDescription = style({
@@ -104,11 +78,6 @@ export const repoDescription = style({
   display: '-webkit-box',
   WebkitLineClamp: 2,
   WebkitBoxOrient: 'vertical',
-  '@media': {
-    '(prefers-color-scheme: dark)': {
-      color: '#a0aec0',
-    },
-  },
 });
 
 export const repoMeta = style({

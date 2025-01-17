@@ -1,4 +1,4 @@
-import { style } from '@vanilla-extract/css';
+import { keyframes, style } from '@vanilla-extract/css';
 
 export const title = style({
   fontSize: '1.875rem',
@@ -14,15 +14,24 @@ export const loaderContainer = style({
   height: '16rem',
 });
 
+const rotation = keyframes({
+  '0%': {
+    transform: 'rotate(0deg)',
+  },
+  '100%': {
+    transform: 'rotate(360deg)',
+  },
+});
+
 export const spinner = style({
-  animation: 'spin 1s linear infinite',
-  borderRadius: '50%',
-  height: '3rem',
   width: '3rem',
-  borderTop: '0.25rem solid #4299e1',
-  borderBottom: '0.25rem solid #4299e1',
-  borderLeft: '0.25rem solid transparent',
-  borderRight: '0.25rem solid transparent',
+  height: '3rem',
+  border: '5px solid rgba(49, 130, 206, 0.78)',
+  borderBottomColor: 'transparent',
+  borderRadius: '50%',
+  display: 'inline-block',
+  boxSizing: 'border-box',
+  animation: `${rotation} 1s linear infinite`,
 });
 
 export const contentContainer = style({

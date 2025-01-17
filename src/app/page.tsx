@@ -108,17 +108,14 @@ const StarredReposPage = () => {
     fetchStarredRepos();
   }, []);
 
-  if (loading) {
-    return (
-      <div className={styles.loaderContainer}>
-        <div className={styles.spinner}></div>
-      </div>
-    );
-  }
-
   return (
     <div>
       <h1 className={styles.title}>개발자 스타 트래커</h1>
+      {loading && (
+        <div className={styles.loaderContainer}>
+          <div className={styles.spinner}></div>
+        </div>
+      )}
       <div className={styles.contentContainer}>
         {developerRepos.map((developer) => (
           <DeveloperStars key={developer.username} developer={developer} />

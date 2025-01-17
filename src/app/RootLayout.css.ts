@@ -4,12 +4,6 @@ export const body = style({
   minHeight: '100vh',
   backgroundColor: '#f7fafc',
   color: '#1a202c',
-  '@media': {
-    '(prefers-color-scheme: dark)': {
-      backgroundColor: '#1a202c',
-      color: '#f7fafc',
-    },
-  },
 });
 
 export const main = style({
