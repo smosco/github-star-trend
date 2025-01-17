@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { format } from 'date-fns';
 import { ko } from 'date-fns/locale';
 import * as styles from './DeveloperStars.css';
+import StarButton from '../StarButton/StarButton';
 
 interface Repo {
   name: string;
@@ -86,6 +87,9 @@ const DeveloperStars = ({ developer }: DeveloperStarsProps) => {
                     {repo.language}
                   </span>
                 )}
+                <div className={styles.repoMeta}>
+                  <StarButton owner={repo.owner} name={repo.name} />
+                </div>
               </div>
             </div>
           </div>
