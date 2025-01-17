@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { githubClient } from '@/utils/githubClient';
-import { GET_STARRED_REPOS } from '@/graphql/queries/getStarredRepos';
+import { STARRED_REPOS_BY_DEVELOPER } from '@/graphql/queries/starredReposByDeveloper.ts';
 import * as styles from './page.css';
 import DeveloperStars from '@/components/DeveloperStars/DeveloperStars';
 
@@ -50,9 +50,9 @@ const StarredReposPage = () => {
   const developers = [
     'mattpocock',
     'codediodeio',
-    'davidkpiano',
-    'soaple',
-    'tonyfromundefined',
+    // 'davidkpiano',
+    // 'soaple',
+    // 'tonyfromundefined',
   ];
 
   const [developerRepos, setDeveloperRepos] = useState<Developer[]>([]);
@@ -67,7 +67,7 @@ const StarredReposPage = () => {
           try {
             const variables = { username: developer, first: 10 };
             const data: GetStarredReposResponse = await githubClient.request(
-              GET_STARRED_REPOS,
+              STARRED_REPOS_BY_DEVELOPER,
               variables
             );
 

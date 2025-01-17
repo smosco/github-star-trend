@@ -1,4 +1,4 @@
-export const GET_STARRED_REPOS = `
+export const STARRED_REPOS_BY_DEVELOPER = `
   query GetStarredRepos($username: String!, $first: Int!) {
     user(login: $username) {
       name
