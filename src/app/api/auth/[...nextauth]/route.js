@@ -1,11 +1,17 @@
 import NextAuth from 'next-auth';
 import GitHubProvider from 'next-auth/providers/github';
 
-const authOptions = {
+export const authOptions = {
   providers: [
     GitHubProvider({
       clientId: process.env.GITHUB_ID,
       clientSecret: process.env.GITHUB_SECRET,
+      authorization: {
+        params: {
+          // NOTE(@smosco): 필요한 스코프 추가
+          scope: 'read:user user:email repo public_repo gist',
+        },
+      },
     }),
   ],
   callbacks: {
