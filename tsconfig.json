@@ -29,7 +29,8 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "src/app/api/github-token/route.js"
+    "src/app/api/github-token/route.js",
+    "src/components/SessionProvider.js"
   ],
   "exclude": ["node_modules"]
 }

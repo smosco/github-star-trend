@@ -5,6 +5,7 @@ import { githubClient } from '@/utils/githubClient';
 import { STARRED_REPOS_BY_DEVELOPER } from '@/graphql/queries/starredReposByDeveloper.ts';
 import * as styles from './page.css';
 import DeveloperStars from '@/components/DeveloperStars/DeveloperStars';
+import AuthButton from '@/components/AuthButton/AuthButton';
 
 interface GetStarredReposResponse {
   user: {
@@ -110,6 +111,7 @@ const StarredReposPage = () => {
 
   return (
     <div>
+      <AuthButton />
       <h1 className={styles.title}>개발자 스타 트래커</h1>
       {loading && (
         <div className={styles.loaderContainer}>
