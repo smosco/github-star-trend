@@ -1,13 +1,8 @@
+import { NextResponse } from 'next/server';
 import { githubClient } from '@/utils/githubClient';
 import { GET_TRENDING_REPOS } from '@/graphql/queries/trendingRepos';
 
-interface TrendingRepo {
-  name: string;
-  description: string;
-  stars: number;
-  url: string;
-}
-
+// GraphQL 응답 타입 정의
 interface GraphQLResponse {
   search: {
     edges: {
@@ -24,32 +19,44 @@ interface GraphQLResponse {
   };
 }
 
-// 트렌딩 레포지토리를 가져오는 함수
-export const fetchTrendingRepos = async (
-  language: string,
-  daysAgo = 7
-): Promise<TrendingRepo[]> => {
-  const fetchDate = new Date();
-  fetchDate.setDate(fetchDate.getDate() - daysAgo); // daysAgo 만큼 이전 날짜 계산
-  const formattedDate = fetchDate.toISOString().split('T')[0]; // ISO 날짜 형식 (YYYY-MM-DD)
+// Route Handler
+export async function GET(request: Request) {
+  // 요청 파라미터 처리
+  const { searchParams } = new URL(request.url);
+  const language = searchParams.get('language') || 'TypeScript';
+  const daysAgo = parseInt(searchParams.get('daysAgo') || '7', 10);
 
-  // query 문자열 생성
+  const fetchDate = new Date();
+  fetchDate.setDate(fetchDate.getDate() - daysAgo);
+  const formattedDate = fetchDate.toISOString().split('T')[0];
+
+  // GraphQL Query 생성
   const query = `language:${language} sort:stars created:>${formattedDate}`;
 
   try {
-    const response = await githubClient.request<GraphQLResponse>(
+    // GraphQL 요청 수행
+    const response: GraphQLResponse = await githubClient.request(
       GET_TRENDING_REPOS,
-      { query }
+      {
+        query,
+      }
     );
 
-    return response.search.edges.map((edge) => ({
+    // 데이터 변환
+    const repos = response.search.edges.map((edge) => ({
       name: edge.node.name,
       description: edge.node.description,
       stars: edge.node.stargazers.totalCount,
       url: edge.node.url,
     }));
+
+    // JSON 응답 반환
+    return NextResponse.json(repos);
   } catch (error) {
     console.error('Error fetching trending repos:', error);
-    throw new Error('Failed to fetch trending repositories');
+    return NextResponse.json(
+      { error: 'Failed to fetch trending repositories' },
+      { status: 500 }
+    );
   }
-};
+}
