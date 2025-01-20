@@ -26,10 +26,10 @@ interface GraphQLResponse {
 
 export const fetchTrendingRepos = async (
   language: string,
-  daysAgo = 3
+  daysAgo = 10
 ): Promise<TrendingRepo[]> => {
   const fetchDate = new Date();
-  fetchDate.setDate(fetchDate.getDate() - daysAgo); // 3일 전 날짜 계산
+  fetchDate.setDate(fetchDate.getDate() - daysAgo);
   const formattedDate = fetchDate.toISOString().split('T')[0]; // ISO 날짜 형식으로 변환 (YYYY-MM-DD)
 
   // query 문자열을 미리 조합

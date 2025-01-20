@@ -1,74 +1,115 @@
 import { style } from '@vanilla-extract/css';
 
-export const embla = style({
-  overflow: 'hidden',
+export const container = style({
   width: '100%',
+  maxWidth: '1120px',
+  margin: '0 auto',
+  padding: '2rem 1rem',
 });
 
-export const emblaViewport = style({
-  display: 'flex',
-  gap: '16px',
-});
-
-export const emblaContainer = style({
-  display: 'flex',
-  gap: '16px',
-});
-
-export const emblaSlide = style({
-  flex: '0 0 300px', // 슬라이드 너비 고정
-  height: '200px', // 슬라이드 높이 고정
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-  backgroundColor: '#f9f9f9',
-  borderRadius: '8px',
-  boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
-});
-
-// 카드 전체 스타일
-export const card = style({
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'space-between', // 요소들 간 간격 균등
-  alignItems: 'center',
-  width: '100%',
-  height: 'fit-content',
-  padding: '16px',
-  boxSizing: 'border-box', // 패딩 포함 크기 계산
+export const title = style({
+  fontSize: '1.875rem',
+  fontWeight: 'bold',
+  color: '#1F2937',
+  marginBottom: '1.5rem',
   textAlign: 'center',
 });
 
-// 타이틀 스타일 (고정 높이)
+export const subtitle = style({
+  fontSize: '1.125rem',
+  fontWeight: 'normal',
+  color: '#4B5563',
+  marginLeft: '0.5rem',
+});
+
+export const emblaContainer = style({
+  overflow: 'hidden',
+});
+
+export const emblaSlides = style({
+  display: 'flex',
+  margin: '0 -1rem',
+});
+
+export const slide = style({
+  flex: 'none',
+  width: '100%',
+  '@media': {
+    '(min-width: 640px)': {
+      width: '50%',
+    },
+    '(min-width: 768px)': {
+      width: '33.3333%',
+    },
+    '(min-width: 1024px)': {
+      width: '25%',
+    },
+  },
+  padding: '0 1rem',
+  marginBottom: '2rem',
+});
+
+export const card = style({
+  backgroundColor: 'white',
+  borderRadius: '0.5rem',
+  boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
+  overflow: 'hidden',
+  display: 'flex',
+  flexDirection: 'column',
+  height: '100%',
+});
+
+export const cardContent = style({
+  padding: '1.5rem',
+  flexGrow: 1,
+});
+
 export const cardTitle = style({
   fontSize: '1.25rem',
-  fontWeight: 'bold',
-  marginBottom: '8px',
-  whiteSpace: 'nowrap', // 텍스트 줄바꿈 방지
+  fontWeight: '600',
+  color: '#1F2937',
+  marginBottom: '0.5rem',
+  whiteSpace: 'nowrap',
   overflow: 'hidden',
   textOverflow: 'ellipsis',
-  height: '24px', // 고정 높이 설정
 });
 
-// 설명 스타일 (최대 3줄로 제한)
 export const cardDescription = style({
-  fontSize: '0.875rem',
-  color: '#666',
+  color: '#4B5563',
+  marginBottom: '1rem',
   display: '-webkit-box',
   WebkitBoxOrient: 'vertical',
-  WebkitLineClamp: 3, // 최대 3줄 표시
+  WebkitLineClamp: 3,
   overflow: 'hidden',
   textOverflow: 'ellipsis',
-  minHeight: '60px', // 최소 높이 설정
-  marginBottom: '8px',
 });
 
-// 스타 영역 스타일 (고정 높이)
-export const cardStars = style({
-  fontSize: '1rem',
+export const cardFooter = style({
+  padding: '1rem 1.5rem',
+  backgroundColor: '#F9FAFB',
+  display: 'flex',
+  justifyContent: 'space-between',
+  alignItems: 'center',
+});
+
+export const star = style({
+  color: '#F59E0B',
+  fontWeight: '600',
   display: 'flex',
   alignItems: 'center',
-  justifyContent: 'center',
-  height: '24px', // 고정 높이 설정
-  marginBottom: '8px',
+});
+
+export const link = style({
+  color: '#3B82F6',
+  textDecoration: 'none',
+  transition: 'color 0.2s ease',
+  ':hover': {
+    color: '#2563EB',
+  },
+});
+
+export const starIcon = style({
+  width: '1.25rem',
+  height: '1.25rem',
+  marginRight: '0.25rem',
 });

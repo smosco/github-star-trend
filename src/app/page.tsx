@@ -113,13 +113,13 @@ const StarredReposPage = () => {
   return (
     <div>
       <AuthButton />
-      <h1 className={styles.title}>개발자 스타 트래커</h1>
+      <h1 className={styles.title}>STAR TRACKER</h1>
       {loading && (
         <div className={styles.loaderContainer}>
           <div className={styles.spinner}></div>
         </div>
       )}
-      <TrendingSlider language="TypeScript" />
+      <TrendingSlider language="TypeScript" daysAgo={7} />
       <div className={styles.contentContainer}>
         {developerRepos.map((developer) => (
           <DeveloperStars key={developer.username} developer={developer} />
