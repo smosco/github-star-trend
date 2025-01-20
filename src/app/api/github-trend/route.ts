@@ -24,23 +24,22 @@ interface GraphQLResponse {
   };
 }
 
+// 트렌딩 레포지토리를 가져오는 함수
 export const fetchTrendingRepos = async (
   language: string,
-  daysAgo = 10
+  daysAgo = 7
 ): Promise<TrendingRepo[]> => {
   const fetchDate = new Date();
-  fetchDate.setDate(fetchDate.getDate() - daysAgo);
-  const formattedDate = fetchDate.toISOString().split('T')[0]; // ISO 날짜 형식으로 변환 (YYYY-MM-DD)
+  fetchDate.setDate(fetchDate.getDate() - daysAgo); // daysAgo 만큼 이전 날짜 계산
+  const formattedDate = fetchDate.toISOString().split('T')[0]; // ISO 날짜 형식 (YYYY-MM-DD)
 
-  // query 문자열을 미리 조합
+  // query 문자열 생성
   const query = `language:${language} sort:stars created:>${formattedDate}`;
 
   try {
-    const response: GraphQLResponse = await githubClient.request(
+    const response = await githubClient.request<GraphQLResponse>(
       GET_TRENDING_REPOS,
-      {
-        query,
-      }
+      { query }
     );
 
     return response.search.edges.map((edge) => ({
