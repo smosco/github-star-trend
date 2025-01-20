@@ -30,7 +30,8 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "src/app/api/github-token/route.js",
-    "src/components/SessionProvider.js"
+    "src/components/SessionProvider.js",
+    "src/app/api/auth/[...nextauth]/route.js"
   ],
   "exclude": ["node_modules"]
 }
