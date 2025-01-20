@@ -6,6 +6,7 @@ import { STARRED_REPOS_BY_DEVELOPER } from '@/graphql/queries/starredReposByDeve
 import * as styles from './page.css';
 import DeveloperStars from '@/components/DeveloperStars/DeveloperStars';
 import AuthButton from '@/components/AuthButton/AuthButton';
+import TrendingSlider from '@/components/TrendingSlider/TrendingSlider';
 
 interface GetStarredReposResponse {
   user: {
@@ -118,6 +119,7 @@ const StarredReposPage = () => {
           <div className={styles.spinner}></div>
         </div>
       )}
+      <TrendingSlider language="TypeScript" />
       <div className={styles.contentContainer}>
         {developerRepos.map((developer) => (
           <DeveloperStars key={developer.username} developer={developer} />
