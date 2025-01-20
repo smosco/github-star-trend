@@ -12,6 +12,12 @@ export const header = style({
   display: 'flex',
   alignItems: 'center',
   marginBottom: '1.5rem',
+  textDecoration: 'none',
+  selectors: {
+    '&:hover': {
+      textDecoration: 'underline',
+    },
+  },
 });
 
 export const avatar = style({

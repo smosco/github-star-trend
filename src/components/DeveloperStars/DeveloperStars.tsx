@@ -39,7 +39,12 @@ const DeveloperStars = ({ developer }: DeveloperStarsProps) => {
 
   return (
     <div className={styles.container}>
-      <div className={styles.header}>
+      <a
+        href={`https://github.com/${developer.username}`}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={styles.header}
+      >
         <Image
           src={developer.avatar || '/placeholder.svg'}
           alt={developer.name}
@@ -51,7 +56,7 @@ const DeveloperStars = ({ developer }: DeveloperStarsProps) => {
           <h2 className={styles.name}>{developer.name}</h2>
           <p className={styles.bio}>{developer.bio}</p>
         </div>
-      </div>
+      </a>
       <div>
         {recentRepos.map((repo) => (
           <div key={repo.name} className={styles.repoContainer}>
