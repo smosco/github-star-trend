@@ -5,7 +5,7 @@ export const contentContainer = style({
 });
 
 export const title = style({
-  fontSize: '1.875rem',
+  fontSize: '1.5rem',
   fontWeight: 'bold',
   color: '#1F2937',
   marginBottom: '1.5rem',
@@ -13,7 +13,7 @@ export const title = style({
 });
 
 export const subtitle = style({
-  fontSize: '1.125rem',
+  fontSize: '1rem',
   fontWeight: 'normal',
   color: '#4B5563',
   marginLeft: '0.5rem',

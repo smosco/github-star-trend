@@ -2,13 +2,10 @@ import { style } from '@vanilla-extract/css';
 
 export const container = style({
   width: '100%',
-  maxWidth: '1120px',
-  margin: '0 auto',
-  padding: '2rem 1rem',
 });
 
 export const title = style({
-  fontSize: '1.875rem',
+  fontSize: '1.5rem',
   fontWeight: 'bold',
   color: '#1F2937',
   marginBottom: '1.5rem',
@@ -16,7 +13,7 @@ export const title = style({
 });
 
 export const subtitle = style({
-  fontSize: '1.125rem',
+  fontSize: '1rem',
   fontWeight: 'normal',
   color: '#4B5563',
   marginLeft: '0.5rem',
@@ -41,9 +38,9 @@ export const slide = style({
     '(min-width: 768px)': {
       width: '33.3333%',
     },
-    '(min-width: 1024px)': {
-      width: '25%',
-    },
+    // '(min-width: 1024px)': {
+    //   width: '25%',
+    // },
   },
   padding: '0 1rem',
   marginBottom: '2rem',
