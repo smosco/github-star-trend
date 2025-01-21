@@ -8,7 +8,7 @@ export const authOptions: NextAuthOptions = {
       clientSecret: process.env.GITHUB_SECRET || '',
       authorization: {
         params: {
-          scope: 'read:user user:email repo public_repo gist',
+          scope: 'read:user user:email user:follow repo public_repo gist',
         },
       },
     }),
