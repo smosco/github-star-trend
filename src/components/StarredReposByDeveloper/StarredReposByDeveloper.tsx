@@ -8,6 +8,7 @@ import DeveloperStars from '@/components/DeveloperStars/DeveloperStars';
 
 interface GetStarredReposResponse {
   user: {
+    id: string;
     name: string;
     login: string;
     avatarUrl: string;
@@ -39,6 +40,7 @@ interface Repo {
 }
 
 interface Developer {
+  id: string;
   name: string;
   username: string;
   avatar: string;
@@ -76,6 +78,7 @@ const StarredReposByDeveloper = () => {
             }));
 
             return {
+              id: data.user.id,
               name: data.user.name,
               username: data.user.login,
               avatar: data.user.avatarUrl,

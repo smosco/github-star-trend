@@ -1,11 +1,17 @@
-export const STARRED_REPOS_BY_DEVELOPER = `
-  query GetStarredRepos($username: String!, $first: Int!) {
+import { gql } from 'graphql-request';
+
+export const STARRED_REPOS_BY_DEVELOPER = gql`
+  query StarredReposByDeveloper($username: String!, $first: Int!) {
     user(login: $username) {
+      id
       name
       login
       avatarUrl
       bio
-      starredRepositories(first: $first, orderBy: { field: STARRED_AT, direction: DESC }) {
+      starredRepositories(
+        first: $first
+        orderBy: { field: STARRED_AT, direction: DESC }
+      ) {
         edges {
           starredAt
           node {
