@@ -11,18 +11,27 @@ export const container = style({
 export const header = style({
   display: 'flex',
   alignItems: 'center',
+  justifyContent: 'space-between', // 양 끝 정렬
   marginBottom: '1.5rem',
+});
+
+export const avatarLink = style({
+  display: 'block',
   textDecoration: 'none',
-  selectors: {
-    '&:hover': {
-      textDecoration: 'underline',
-    },
-  },
 });
 
 export const avatar = style({
   borderRadius: '50%',
   marginRight: '1rem',
+});
+
+export const headerContent = style({
+  flex: 1, // 헤더 내용이 넓이를 차지하도록 설정
+  marginLeft: '1rem',
+});
+
+export const followButton = style({
+  marginLeft: 'auto', // 오른쪽 끝으로 이동
 });
 
 export const name = style({
@@ -45,7 +54,6 @@ export const repoContainer = style({
   overflow: 'hidden',
   backgroundColor: '#f9fafb',
   boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
-  transition: 'box-shadow 0.3s ease, transform 0.3s ease',
   selectors: {
     '&:hover': {
       boxShadow: '0 6px 8px rgba(0, 0, 0, 0.2)',

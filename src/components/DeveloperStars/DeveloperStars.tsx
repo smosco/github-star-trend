@@ -41,25 +41,29 @@ const DeveloperStars = ({ developer }: DeveloperStarsProps) => {
 
   return (
     <div className={styles.container}>
-      <a
-        href={`https://github.com/${developer.username}`}
-        target="_blank"
-        rel="noopener noreferrer"
-        className={styles.header}
-      >
-        <Image
-          src={developer.avatar || '/placeholder.svg'}
-          alt={developer.name}
-          width={64}
-          height={64}
-          className={styles.avatar}
-        />
-        <div>
+      <div className={styles.header}>
+        <a
+          href={`https://github.com/${developer.username}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={styles.avatarLink}
+        >
+          <Image
+            src={developer.avatar || '/placeholder.svg'}
+            alt={developer.name}
+            width={64}
+            height={64}
+            className={styles.avatar}
+          />
+        </a>
+        <div className={styles.headerContent}>
           <h2 className={styles.name}>{developer.name}</h2>
           <p className={styles.bio}>{developer.bio}</p>
         </div>
-      </a>
-      <FollowButton userId={developer.id} />
+        <div className={styles.followButton}>
+          <FollowButton userId={developer.id} />
+        </div>
+      </div>
       <div>
         {recentRepos.map((repo) => (
           <div key={repo.name} className={styles.repoContainer}>
