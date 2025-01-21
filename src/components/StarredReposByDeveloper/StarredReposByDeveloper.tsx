@@ -32,7 +32,7 @@ const StarredReposByDeveloper = () => {
     const fetchDevelopersData = async () => {
       setLoading(true);
       try {
-        const response = await fetch('/api/github-starred-repos', {
+        const response = await fetch('/api/starred-repos-by-developer', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({

@@ -2,10 +2,7 @@ import React, { useEffect, useState } from 'react';
 import useEmblaCarousel from 'embla-carousel-react';
 import * as styles from './TrendingSlider.css';
 
-const fetchTrendingReposFromApi = async (
-  language: string,
-  daysAgo: number
-): Promise<any[]> => {
+const fetchTrendingRepos = async (language: string, daysAgo: number) => {
   const response = await fetch(
     `/api/github-trend?language=${encodeURIComponent(
       language
@@ -35,7 +32,7 @@ const TrendingSlider = ({
     const fetchRepos = async () => {
       setLoading(true);
       try {
-        const data = await fetchTrendingReposFromApi(language, daysAgo);
+        const data = await fetchTrendingRepos(language, daysAgo);
         setRepos(data);
       } catch (err) {
         setError('Failed to fetch trending repositories');

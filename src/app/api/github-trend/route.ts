@@ -19,7 +19,6 @@ interface GraphQLResponse {
   };
 }
 
-// Route Handler
 export async function GET(request: Request) {
   // 요청 파라미터 처리
   const { searchParams } = new URL(request.url);
