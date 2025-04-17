@@ -1,0 +1,148 @@
+[
+  {
+    "id": "theme-2025-04-W03",
+    "title": "MCP에 진심인 개발자들",
+    "slug": "mcp",
+    "createdAt": "2025-04-15T00:00:00.000Z",
+    "editorComment": "이번 주에는 Claude 기반의 MCP 연동을 실험 중인 개발자들을 중심으로 큐레이션했습니다. 실제로 git 기반 MCP 서버, Swift SDK, 다양한 도구 큐레이션까지 등장하고 있어요. 관심사 태그와 함께 확인해보세요!",
+    "curators": [
+      {
+        "username": "cyanheads",
+        "profileUrl": "https://github.com/cyanheads",
+        "avatarUrl": "https://avatars.githubusercontent.com/cyanheads",
+        "bio": "MCP Git 서버를 만든 개발자",
+        "highlight": "Git 리포지토리를 MCP와 연결한 사람",
+        "repos": [
+          {
+            "name": "git-mcp-server",
+            "url": "https://github.com/cyanheads/git-mcp-server",
+            "description": "Git 기반의 MCP 호환 서버"
+          },
+          {
+            "name": "repo-map",
+            "url": "https://github.com/cyanheads/repo-map",
+            "description": "리포지토리 구조 시각화 도구"
+          }
+        ]
+      },
+      {
+        "username": "appcypher",
+        "profileUrl": "https://github.com/appcypher",
+        "avatarUrl": "https://avatars.githubusercontent.com/appcypher",
+        "bio": "MCP 생태계 도구를 큐레이션 중인 개발자",
+        "highlight": "MCP 관련 서버 리스트 정리",
+        "repos": [
+          {
+            "name": "awesome-mcp-servers",
+            "url": "https://github.com/appcypher/awesome-mcp-servers",
+            "description": "MCP 서버 큐레이션 모음"
+          },
+          {
+            "name": "microsandbox",
+            "url": "https://github.com/appcypher/microsandbox",
+            "description": "AI 생성 코드를 위한 샌드박스 환경"
+          }
+        ]
+      },
+      {
+        "username": "zckly",
+        "profileUrl": "https://github.com/zckly",
+        "avatarUrl": "https://avatars.githubusercontent.com/zckly",
+        "bio": "LLM과 MCP 실험을 병행하는 개발자",
+        "highlight": "Python 기반 MCP API 사용 실험",
+        "repos": [
+          {
+            "name": "dynamic-interface-web",
+            "url": "https://github.com/zckly/dynamic-interface-web",
+            "description": "LLM 기반 동적 UI 인터페이스 실험"
+          }
+        ]
+      },
+      {
+        "username": "jspahrsummers",
+        "profileUrl": "https://github.com/jspahrsummers",
+        "avatarUrl": "https://avatars.githubusercontent.com/jspahrsummers",
+        "bio": "MCP 스펙 정의에 기여한 핵심 개발자",
+        "highlight": "MCP 사양을 설계한 오리지널 기여자",
+        "repos": [
+          {
+            "name": "libextobjc",
+            "url": "https://github.com/jspahrsummers/libextobjc",
+            "description": "Objective-C 확장 라이브러리"
+          },
+          {
+            "name": "sandboxing-guide",
+            "url": "https://github.com/jspahrsummers/sandboxing-guide",
+            "description": "Mac/Windows 앱 샌드박싱 가이드"
+          }
+        ]
+      },
+      {
+        "username": "dsp-ant",
+        "profileUrl": "https://github.com/dsp-ant",
+        "avatarUrl": "https://avatars.githubusercontent.com/dsp-ant",
+        "bio": "MCP 관련 도구 개발자",
+        "highlight": "Go 기반 MCP 서버 실험 중",
+        "repos": [
+          {
+            "name": "goose",
+            "url": "https://github.com/dsp-ant/goose",
+            "description": "오픈소스 AI 에이전트"
+          },
+          {
+            "name": "zed",
+            "url": "https://github.com/dsp-ant/zed",
+            "description": "고성능 멀티플레이어 코드 에디터"
+          }
+        ]
+      },
+      {
+        "username": "wong2",
+        "profileUrl": "https://github.com/wong2",
+        "avatarUrl": "https://avatars.githubusercontent.com/wong2",
+        "bio": "ChatGPT와 MCP 도구를 실험 중인 개발자",
+        "highlight": "ChatGPT x MCP 통합 실험",
+        "repos": [
+          {
+            "name": "chatgpt-google-extension",
+            "url": "https://github.com/wong2/chatgpt-google-extension",
+            "description": "ChatGPT와 Google 검색 통합 확장"
+          }
+        ]
+      },
+      {
+        "username": "AI-App",
+        "profileUrl": "https://github.com/AI-App",
+        "avatarUrl": "https://avatars.githubusercontent.com/AI-App",
+        "bio": "AI 프레임워크 기반 애플리케이션 팀",
+        "highlight": "MCP 기반 오토 GPT 실험",
+        "repos": [
+          {
+            "name": "Significant-Gravitas.AutoGPT",
+            "url": "https://github.com/AI-App/Significant-Gravitas.AutoGPT",
+            "description": "AutoGPT 포크 및 실험"
+          }
+        ]
+      },
+      {
+        "username": "riza-io",
+        "profileUrl": "https://github.com/riza-io",
+        "avatarUrl": "https://avatars.githubusercontent.com/riza-io",
+        "bio": "안전한 코드 실행 환경을 만드는 MCP 개발팀",
+        "highlight": "Riza API를 MCP 서버로 구현",
+        "repos": [
+          {
+            "name": "riza-mcp",
+            "url": "https://github.com/riza-io/riza-mcp",
+            "description": "MCP 호환 API 서버 구현"
+          },
+          {
+            "name": "riza-api-python",
+            "url": "https://github.com/riza-io/riza-api-python",
+            "description": "Python 기반 Riza API 클라이언트"
+          }
+        ]
+      }
+    ]
+  }
+]
