@@ -1,7 +1,8 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import * as styles from './RootLayout.css';
-import SessionProvider from '@/components/SessionProvider';
+// import SessionProvider from '@/components/SessionProvider';
+import Providers from './_provider';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -20,7 +21,8 @@ export default function RootLayout({
       <body className={`${inter.className} ${styles.body}`}>
         <main className={styles.main}>
           <div className={styles.container}>
-            <SessionProvider>{children}</SessionProvider>
+            <Providers>{children}</Providers>
+            {/* <SessionProvider>{children}</SessionProvider> */}
           </div>
         </main>
       </body>
