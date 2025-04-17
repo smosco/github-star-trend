@@ -1,8 +1,15 @@
 import { style } from '@vanilla-extract/css';
 
 export const title = style({
-  fontSize: '1.875rem',
+  fontSize: '2rem',
   fontWeight: 'bold',
-  textAlign: 'center',
+  marginBottom: '0.5rem',
+});
+
+export const description = style({
+  fontSize: '1rem',
+  lineHeight: 1.6,
+  color: '#444',
+  maxWidth: '60ch',
   marginBottom: '2rem',
 });
