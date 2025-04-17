@@ -36,14 +36,14 @@ export const grid = style({
 });
 
 export const card = style({
-  backgroundColor: '#1f2937', // gray-800
+  backgroundColor: '#1f2937',
   borderRadius: '0.5rem',
   overflow: 'hidden',
   border: '1px solid #374151',
   transition: 'box-shadow 0.3s ease',
   selectors: {
     '&:hover': {
-      boxShadow: '0 0 0 4px rgba(236, 72, 153, 0.1)', // pink-500/10
+      boxShadow: '0 0 0 4px rgba(236, 72, 153, 0.1)',
     },
   },
 });
@@ -58,12 +58,20 @@ export const cardHeader = style({
   marginBottom: '1rem',
 });
 
+export const profileLink = style({
+  display: 'flex',
+  alignItems: 'center',
+  textDecoration: 'none',
+  color: 'inherit',
+  gap: '1rem',
+});
+
 export const avatar = style({
   width: '4rem',
   height: '4rem',
   borderRadius: '9999px',
   objectFit: 'cover',
-  border: '2px solid #facc15', // yellow-400
+  border: '2px solid #facc15',
 });
 
 export const profile = style({
@@ -82,7 +90,7 @@ export const username = style({
 });
 
 export const highlight = style({
-  color: '#ec4899', // pink-400
+  color: '#ec4899',
 });
 
 export const bio = style({
@@ -112,11 +120,11 @@ export const repoItem = style({
 });
 
 export const repoName = style({
-  color: '#60a5fa', // blue-400
+  color: '#60a5fa',
   fontWeight: 500,
   selectors: {
     '&:hover': {
-      color: '#93c5fd', // blue-300
+      color: '#93c5fd',
     },
   },
 });

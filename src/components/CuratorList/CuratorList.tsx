@@ -19,24 +19,24 @@ export function CuratorList() {
           <div key={curator.username} className={styles.card}>
             <div className={styles.cardInner}>
               <div className={styles.cardHeader}>
-                <img
-                  src={
-                    curator.avatarUrl || '/placeholder.svg?height=64&width=64'
-                  }
-                  alt={curator.username}
-                  className={styles.avatar}
-                />
-                <div className={styles.profile}>
-                  <a
-                    href={curator.profileUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={styles.username}
-                  >
-                    {curator.username}
-                  </a>
-                  <p className={styles.highlight}>{curator.highlight}</p>
-                </div>
+                <a
+                  href={`https://github.com/${curator.username}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.profileLink}
+                >
+                  <img
+                    src={
+                      curator.avatarUrl || '/placeholder.svg?height=64&width=64'
+                    }
+                    alt={curator.username}
+                    className={styles.avatar}
+                  />
+                  <div className={styles.profile}>
+                    <div className={styles.username}>{curator.username}</div>
+                    <p className={styles.highlight}>{curator.highlight}</p>
+                  </div>
+                </a>
               </div>
 
               {curator.bio && <p className={styles.bio}>{curator.bio}</p>}

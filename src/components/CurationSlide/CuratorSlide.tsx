@@ -47,15 +47,22 @@ export function CuratorSlide() {
           <div className={styles.emblaContainer}>
             {curators.map((curator: Curator) => (
               <div key={curator.username} className={styles.slide}>
-                <div className={styles.card}>
-                  <img
-                    src={curator.avatarUrl}
-                    alt={curator.username}
-                    className={styles.avatar}
-                  />
-                  <div className={styles.name}>{curator.username}</div>
-                  <div className={styles.highlight}>{curator.highlight}</div>
-                </div>
+                <a
+                  href={`https://github.com/${curator.username}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.cardLink} // 선택적, 스타일 추가 가능
+                >
+                  <div className={styles.card}>
+                    <img
+                      src={curator.avatarUrl}
+                      alt={curator.username}
+                      className={styles.avatar}
+                    />
+                    <div className={styles.name}>{curator.username}</div>
+                    <div className={styles.highlight}>{curator.highlight}</div>
+                  </div>
+                </a>
               </div>
             ))}
           </div>

@@ -44,6 +44,12 @@ export const slide = style({
   },
 });
 
+export const cardLink = style({
+  display: 'block',
+  textDecoration: 'none',
+  color: 'inherit',
+});
+
 export const card = style({
   backgroundColor: '#1f2937',
   border: '1px solid #374151',
