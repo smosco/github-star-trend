@@ -1,19 +1,25 @@
 'use client';
 
-import { useEffect, useState } from 'react';
 import useEmblaCarousel from 'embla-carousel-react';
 import { useQuery } from '@apollo/client';
 import { GET_THEME_SLIDE } from '@/graphql/queries/getThemeSlide';
 import * as styles from './CuratorSlide.css';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { useEffect, useState } from 'react';
 import { Curator } from '@/app/api/graphql/types';
 
 export function CuratorSlide() {
-  const { data, loading } = useQuery(GET_THEME_SLIDE);
-  const [emblaRef, emblaApi] = useEmblaCarousel();
+  const { data } = useQuery(GET_THEME_SLIDE);
+  const [emblaRef, emblaApi] = useEmblaCarousel({
+    align: 'center', // 슬라이드 가운데 위치
+    containScroll: 'trimSnaps', // 넘침 방지
+    loop: false, // 필요 시 true 가능
+  });
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [canScrollPrev, setCanScrollPrev] = useState(false);
   const [canScrollNext, setCanScrollNext] = useState(false);
+
+  const curators = data?.latestTheme?.curators ?? [];
 
   useEffect(() => {
     if (!emblaApi) return;
@@ -28,45 +34,27 @@ export function CuratorSlide() {
     onSelect();
   }, [emblaApi]);
 
-  if (loading || !data?.latestTheme?.curators) return null;
-
-  const curators = data.latestTheme.curators.slice(0, 5);
+  if (!curators.length) return null;
 
   return (
-    <section>
-      <h2
-        style={{
-          fontWeight: 'bold',
-          fontSize: '1.25rem',
-          marginBottom: '1rem',
-        }}
-      >
-        ✨ 이번 주 대표 큐레이터
+    <section className={styles.section}>
+      <h2 className={styles.heading}>
+        <span className={styles.headingIcon}>✨</span> 이번 주 대표 큐레이터
       </h2>
 
-      <div className={styles.wrapper}>
-        <div className={styles.viewport} ref={emblaRef}>
-          <div className={styles.container}>
-            {curators.map((c: any) => (
-              <div key={c.username} className={styles.slide}>
+      <div className={styles.sliderWrapper}>
+        <div className={styles.emblaViewport} ref={emblaRef}>
+          <div className={styles.emblaContainer}>
+            {curators.map((curator: Curator) => (
+              <div key={curator.username} className={styles.slide}>
                 <div className={styles.card}>
                   <img
-                    src={c.avatarUrl}
-                    alt={c.username}
-                    style={{ width: 60, height: 60, borderRadius: '9999px' }}
+                    src={curator.avatarUrl}
+                    alt={curator.username}
+                    className={styles.avatar}
                   />
-                  <div style={{ fontWeight: 600, marginTop: '0.5rem' }}>
-                    {c.username}
-                  </div>
-                  <div
-                    style={{
-                      fontSize: '0.875rem',
-                      color: '#666',
-                      marginTop: '0.25rem',
-                    }}
-                  >
-                    {c.highlight}
-                  </div>
+                  <div className={styles.name}>{curator.username}</div>
+                  <div className={styles.highlight}>{curator.highlight}</div>
                 </div>
               </div>
             ))}
@@ -75,7 +63,7 @@ export function CuratorSlide() {
 
         {canScrollPrev && (
           <button
-            className={styles.prevButton}
+            className={styles.navButtonLeft}
             onClick={() => emblaApi?.scrollPrev()}
           >
             <ChevronLeft size={20} />
@@ -83,7 +71,7 @@ export function CuratorSlide() {
         )}
         {canScrollNext && (
           <button
-            className={styles.nextButton}
+            className={styles.navButtonRight}
             onClick={() => emblaApi?.scrollNext()}
           >
             <ChevronRight size={20} />
@@ -91,8 +79,7 @@ export function CuratorSlide() {
         )}
       </div>
 
-      {/* 인디케이터 점 */}
-      <div className={styles.dots}>
+      <div className={styles.indicators}>
         {curators.map((_: Curator, index: number) => (
           <span
             key={index}

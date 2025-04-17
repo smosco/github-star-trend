@@ -2,8 +2,8 @@ import { style } from '@vanilla-extract/css';
 
 export const body = style({
   minHeight: '100vh',
-  backgroundColor: '#f7fafc',
-  color: '#1a202c',
+  backgroundColor: '#0f172a',
+  color: '#fff',
 });
 
 export const main = style({

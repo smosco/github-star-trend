@@ -4,7 +4,7 @@
     "title": "MCP에 진심인 개발자들",
     "slug": "mcp",
     "createdAt": "2025-04-15T00:00:00.000Z",
-    "editorComment": "이번 주에는 Claude 기반의 MCP 연동을 실험 중인 개발자들을 중심으로 큐레이션했습니다. 실제로 git 기반 MCP 서버, Swift SDK, 다양한 도구 큐레이션까지 등장하고 있어요. 관심사 태그와 함께 확인해보세요!",
+    "editorComment": "이번 주에는 Claude 기반의 MCP 연동을 실험 중인 개발자들을 중심으로 큐레이션했습니다. 실제로 git 기반 MCP 서버, Swift SDK, 다양한 도구 큐레이션까지 등장하고 있어요.",
     "curators": [
       {
         "username": "cyanheads",

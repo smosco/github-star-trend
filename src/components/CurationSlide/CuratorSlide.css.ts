@@ -1,78 +1,130 @@
 import { style } from '@vanilla-extract/css';
 
-export const wrapper = style({
+export const section = style({
+  marginTop: '3rem',
+  marginBottom: '3rem',
+});
+
+export const heading = style({
+  fontSize: '1.5rem',
+  fontWeight: 700,
+  marginBottom: '1.5rem',
+  display: 'flex',
+  alignItems: 'center',
+  background: 'linear-gradient(to right, #facc15, #ec4899)',
+  WebkitBackgroundClip: 'text',
+  color: 'transparent',
+});
+
+export const headingIcon = style({
+  marginRight: '0.5rem',
+  color: '#fff',
+});
+
+export const sliderWrapper = style({
   position: 'relative',
 });
 
-export const viewport = style({
+export const emblaViewport = style({
   overflow: 'hidden',
-  width: '100%',
-  cursor: 'grab',
-  selectors: {
-    '&:active': {
-      cursor: 'grabbing',
-    },
-  },
 });
 
-export const container = style({
+export const emblaContainer = style({
   display: 'flex',
 });
 
 export const slide = style({
-  flex: '0 0 80%',
-  padding: '1rem',
-  scrollSnapAlign: 'start',
-  '@media': {
-    'screen and (min-width: 768px)': {
-      flex: '0 0 50%',
-    },
-    'screen and (min-width: 1024px)': {
-      flex: '0 0 33.3333%',
+  flex: '0 0 45%',
+  minWidth: 0,
+  paddingLeft: '1rem',
+  selectors: {
+    '&:first-child': {
+      paddingLeft: 0,
     },
   },
 });
 
 export const card = style({
-  border: '1px solid #ddd',
+  backgroundColor: '#1f2937',
+  border: '1px solid #374151',
   borderRadius: '0.5rem',
-  padding: '1rem',
-  backgroundColor: '#fff',
+  padding: '1.5rem',
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
   textAlign: 'center',
+  minHeight: '180px', // 높이 통일
+  transition: 'border-color 0.3s ease',
+  selectors: {
+    '&:hover': {
+      borderColor: '#facc15',
+    },
+  },
 });
 
-export const navButton = style({
-  position: 'absolute',
-  top: '50%',
-  transform: 'translateY(-50%)',
-  backgroundColor: 'rgba(255, 255, 255, 0.9)',
-  border: '1px solid #ccc',
+export const avatar = style({
+  width: '4rem',
+  height: '4rem',
   borderRadius: '9999px',
-  padding: '0.5rem',
-  cursor: 'pointer',
+  border: '2px solid #facc15',
+  objectFit: 'cover',
 });
 
-export const prevButton = style([navButton, { left: '0.5rem' }]);
-export const nextButton = style([navButton, { right: '0.5rem' }]);
+export const name = style({
+  fontWeight: 600,
+  marginTop: '0.75rem',
+  color: '#fff',
+});
 
-export const dots = style({
+export const highlight = style({
+  fontSize: '0.875rem',
+  color: '#ec4899',
+  marginTop: '0.25rem',
+});
+
+export const navButtonLeft = style({
+  position: 'absolute',
+  left: 0,
+  top: '50%',
+  transform: 'translate(-50%, -50%)',
+  padding: '0.5rem',
+  borderRadius: '9999px',
+  backgroundColor: '#1f2937',
+  border: '1px solid #374151',
+  color: '#fff',
+  selectors: {
+    '&:hover': {
+      backgroundColor: '#374151',
+    },
+  },
+});
+
+export const navButtonRight = style([
+  navButtonLeft,
+  {
+    left: 'auto',
+    right: 0,
+    transform: 'translate(50%, -50%)',
+  },
+]);
+
+export const indicators = style({
   display: 'flex',
   justifyContent: 'center',
-  marginTop: '1rem',
+  marginTop: '1.5rem',
   gap: '0.5rem',
 });
 
 export const dot = style({
-  width: '8px',
-  height: '8px',
-  borderRadius: '50%',
-  backgroundColor: '#ccc',
-  transition: 'background-color 0.2s ease-in-out',
+  width: '0.5rem',
+  height: '0.5rem',
+  borderRadius: '9999px',
+  backgroundColor: '#374151',
 });
 
 export const dotActive = style([
   dot,
   {
-    backgroundColor: '#333',
+    background: 'linear-gradient(to right, #facc15, #ec4899)',
   },
 ]);
