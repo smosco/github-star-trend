@@ -11,6 +11,12 @@ export const title = style({
   marginBottom: '1rem',
 });
 
+export const empty = style({
+  fontSize: '0.95rem',
+  color: '#999',
+  marginTop: '0.5rem',
+});
+
 export const list = style({
   listStyle: 'none',
   paddingLeft: 0,

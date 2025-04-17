@@ -19,9 +19,14 @@ type TrendingRepo = {
 export async function getTrendingRepos(token: string): Promise<TrendingRepo[]> {
   const repoMap = new Map<string, TrendingRepo>();
 
-  for (const username of CURATORS) {
-    const starred = await getRecentStarredRepos(username, token);
+  const allResults = await Promise.all(
+    CURATORS.map(async (username) => {
+      const starred = await getRecentStarredRepos(username, token);
+      return { username, starred };
+    })
+  );
 
+  for (const { username, starred } of allResults) {
     for (const repo of starred) {
       const existing = repoMap.get(repo.nameWithOwner);
 
@@ -38,7 +43,6 @@ export async function getTrendingRepos(token: string): Promise<TrendingRepo[]> {
     }
   }
 
-  // 2명 이상이 스타한 레포만 추출
   return Array.from(repoMap.values()).filter(
     (repo) => repo.starredBy.length >= 2
   );

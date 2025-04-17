@@ -1,3 +1,4 @@
+import { NextRequest } from 'next/server';
 import { createSchema, createYoga } from 'graphql-yoga';
 import type { Theme } from './types';
 
@@ -65,6 +66,13 @@ const resolvers = {
 const yoga = createYoga({
   schema: createSchema({ typeDefs, resolvers }),
   graphqlEndpoint: '/api/graphql',
+  fetchAPI: { Request, Response },
 });
 
-export { yoga as GET, yoga as POST };
+export async function GET(req: NextRequest) {
+  return yoga.handleRequest(req, {});
+}
+
+export async function POST(req: NextRequest) {
+  return yoga.handleRequest(req, {});
+}

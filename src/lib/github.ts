@@ -56,10 +56,10 @@ export async function getRecentStarredRepos(
         };
       };
     };
-    const oneMonthAgo = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000);
+    const oneWeekAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
 
     return res.user.starredRepositories.edges
-      .filter((edge: any) => new Date(edge.starredAt) > oneMonthAgo)
+      .filter((edge: any) => new Date(edge.starredAt) > oneWeekAgo)
       .map((edge: any) => ({
         nameWithOwner: edge.node.nameWithOwner,
         url: edge.node.url,
