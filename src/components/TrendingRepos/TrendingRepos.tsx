@@ -1,7 +1,7 @@
 'use client';
 
 import { useQuery } from '@apollo/client';
-import { GET_TRENDING_REPOS } from '@/graphql/queries';
+import { GET_TRENDING_REPOS } from '@/graphql/queries/getTrendingRepos';
 import * as styles from './TrendingRepos.css';
 
 export function TrendingRepos() {

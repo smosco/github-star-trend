@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import useEmblaCarousel from 'embla-carousel-react';
 import { useQuery } from '@apollo/client';
-import { GET_THEME_SLIDE } from '@/graphql/queries';
+import { GET_THEME_SLIDE } from '@/graphql/queries/getThemeSlide';
 import * as styles from './CuratorSlide.css';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { Curator } from '@/app/api/graphql/types';

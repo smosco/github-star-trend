@@ -1,7 +1,7 @@
 'use client';
 
 import { useQuery } from '@apollo/client';
-import { GET_THEME_WITH_REPOS } from '@/graphql/queries';
+import { GET_THEME_WITH_REPOS } from '@/graphql/queries/getThemeWithRepos.ts';
 import * as styles from './CuratorList.css.ts';
 
 export function CuratorList() {

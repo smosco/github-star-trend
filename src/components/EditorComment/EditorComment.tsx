@@ -1,7 +1,7 @@
 'use client';
 
 import { useQuery } from '@apollo/client';
-import { GET_LATEST_THEME } from '@/graphql/queries';
+import { GET_LATEST_THEME } from '@/graphql/queries/getLatestTheme';
 import * as styles from './EditorComment.css';
 
 export function EditorComment() {
